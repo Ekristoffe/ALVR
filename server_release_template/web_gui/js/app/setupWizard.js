@@ -7,29 +7,29 @@ define([
 ], function (_, driverList, wizardTemplate, i18n) {
     return function (alvrSettings) {
 
-        function GetAndCheckGPUSupport() {
+        function getAndCheckGPUSupport() {
             let gpu = "";
             $.ajax({
                 type: "GET",
-                url: `graphics-devices`,
+                url: "graphics-devices",
                 contentType: "application/json;charset=UTF-8",
                 processData: false,
                 async: false,
                 success: function(res) {
                     if (res.length > 0) {
-                        gpu = res[0]
+                        gpu = res[0];
                     }
                 },
             });
 
             var unsupportedGPURegex = new RegExp("(Radeon (((VIVO|[2-9][0-9][0-9][0-9]) ?\S*)|VE|LE|X(1?[0-9][0-5]0))"+
                            "|GeForce ((8[3-9][0-9]|9[0-3][0-9]|94[0-5])[AM]|GT 1030|GTX 9([2-3][0-9]|40)MX|MX(110|130|1[5-9][0-9]|2[0-9][0-9]|3[0-2][0-9]|330|350|450)))"+
-                           "|Intel")
+                           "|Intel");
 
             if (unsupportedGPURegex.test(gpu)) {
-                return '🔴 '+ gpu +i18n.GPUUnsupported;
+                return "🔴 "+ gpu +i18n.GPUUnsupported;
             } else {
-                return '🟢 '+ gpu +i18n.GPUSupported;
+                return "🟢 "+ gpu +i18n.GPUSupported;
             }
         }
         
@@ -42,16 +42,23 @@ define([
             $("body").append(template);
             $(document).ready(() => {
 
+<<<<<<< Updated upstream
                 $('#setupWizard').modal({
                     backdrop: 'static',
+=======
+                uploadPreset.addUploadPreset("importPlaceholder");
+
+                $("#setupWizard").modal({
+                    backdrop: "static",
+>>>>>>> Stashed changes
                     keyboard: false
                 });
 
-                $("#GPUSupportText").text(GetAndCheckGPUSupport());
+                $("#GPUSupportText").text(getAndCheckGPUSupport());
 
                 $("#addFirewall").click(() => {
                     $.get("firewall-rules/add", undefined, (res) => {
-                        if (res == -1) {
+                        if (res === -1) {
                             Lobibox.notify("error", {
                                 size: "mini",
                                 rounded: true,
@@ -106,12 +113,12 @@ define([
                     var target = $(ev.target);
 
                     var renderResolution = $("#_root_video_renderResolution_scale-choice-");
-                    renderResolution.parent().parent().children().filter(".active").removeClass("active")
+                    renderResolution.parent().parent().children().filter(".active").removeClass("active");
                     renderResolution.prop("checked", true);
                     alvrSettings.storeParam(renderResolution);
 
                     var targetResolution = $("#_root_video_recommendedTargetResolution_scale-choice-");
-                    targetResolution.parent().parent().children().filter(".active").removeClass("active")
+                    targetResolution.parent().parent().children().filter(".active").removeClass("active");
                     targetResolution.prop("checked", true);
                     alvrSettings.storeParam(targetResolution);
 
@@ -132,7 +139,7 @@ define([
                             preferredFps.val(72);
                             
                             var h264CodecTarget = $("#_root_video_codec_H264-choice-");
-                            h264CodecTarget.parent().parent().children().filter(".active").removeClass("active")
+                            h264CodecTarget.parent().parent().children().filter(".active").removeClass("active");
                             h264CodecTarget.prop("checked", true);
                             alvrSettings.storeParam(h264CodecTarget);
                             break;
@@ -144,7 +151,7 @@ define([
                             preferredFps.val(90);
 
                             var hevcCodecTarget = $("#_root_video_codec_HEVC-choice-");
-                            hevcCodecTarget.parent().parent().children().filter(".active").removeClass("active")
+                            hevcCodecTarget.parent().parent().children().filter(".active").removeClass("active");
                             hevcCodecTarget.prop("checked", true);
                             alvrSettings.storeParam(hevcCodecTarget);
                             break;
@@ -164,13 +171,13 @@ define([
                 $("#wizardNextButton").click(() => {
 
                     if (currentPage >= $("#wizardMain").children().length - 1) {
-                        $('#setupWizard').modal('hide');
+                        $("#setupWizard").modal("hide");
                         alvrSettings.disableWizard();
                         return;
                     }
 
                     if (currentPage >= $("#wizardMain").children().length - 2) {
-                        $("#wizardNextButton").text(i18n.buttonClose)
+                        $("#wizardNextButton").text(i18n.buttonClose);
                     }
 
 
@@ -183,10 +190,14 @@ define([
                 })
 
             });
+<<<<<<< Updated upstream
 
         }
 
 
 
+=======
+        };
+>>>>>>> Stashed changes
     };
 });

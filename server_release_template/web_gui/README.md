@@ -6,4 +6,7 @@ Its based on the libraries Bootstrap 4, jquery and RequireJS. It was a deliberat
 -   easy to read, non minified code  
 -   speed is not a requirement for the ui  
 -   proven and stable libraries are used
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes

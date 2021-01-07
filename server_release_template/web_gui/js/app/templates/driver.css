@@ -8,8 +8,8 @@
     width: 80px;
     height: 23px;
     line-height: 20px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
     margin-right: 10px;
     margin-top: auto;
     margin-bottom: auto;
@@ -21,11 +21,11 @@
     overflow: hidden;
 }
 
-.driverCard div div table tr td:first-child { 
+.driverCard div div table tr td:first-child {
     width: 100%;
 }
 
-.driverCard div div table tr td:last-child { 
+.driverCard div div table tr td:last-child {
     width: 90px;
 }
 
