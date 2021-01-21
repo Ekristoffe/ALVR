@@ -13,7 +13,7 @@ define([
     "app/languageSelector",
     "json!../../session",
     "text!../../version",
-    "js/lib/lobibox.min.js",
+    "js/lib/lobibox.min",
     "css!js/lib/lobibox.min.css",
 ], function (
     $,
@@ -37,15 +37,19 @@ define([
 
         function checkForUpdate(settings, delay) {
             session = settings.getSession();
-            let updateType = session.sessionSettings.extra.updateChannel.variant;
+            let updateType =
+                session.sessionSettings.extra.updateChannel.variant;
 
             let url = "";
             if (updateType === "stable") {
-                url = "https://api.github.com/repos/alvr-org/ALVR/releases/latest";
+                url =
+                    "https://api.github.com/repos/alvr-org/ALVR/releases/latest";
             } else if (updateType === "beta") {
-                url = "https://api.github.com/repos/alvr-org/ALVR/releases?per_page=1";
+                url =
+                    "https://api.github.com/repos/alvr-org/ALVR/releases?per_page=1";
             } else if (updateType === "nightly") {
-                url = "https://api.github.com/repos/alvr-org/ALVR-nightly/releases/latest";
+                url =
+                    "https://api.github.com/repos/alvr-org/ALVR-nightly/releases/latest";
             } else {
                 return;
             }
@@ -77,7 +81,7 @@ define([
                         iconSource: "fontAwesome",
                         msg: i18n.needUpdateClickForMore,
                         closable: true,
-                        onClick: () => showUpdatePopupDialog(data)
+                        onClick: () => showUpdatePopupDialog(data),
                     });
                 } else {
                     triggerUpdate(data);
@@ -132,7 +136,7 @@ define([
                 }
             });
             if (url === "") {
-                return
+                return;
             }
 
             $("#setupWizard").modal("hide");
@@ -142,7 +146,9 @@ define([
             const elem = document.getElementById("progressBar");
 
             // Create WebSocket connection.
-            const webSocket = new WebSocket("ws://" + window.location.host + "/events");
+            const webSocket = new WebSocket(
+                "ws://" + window.location.host + "/events",
+            );
 
             $.ajax({
                 type: "POST",
@@ -174,9 +180,21 @@ define([
                         if (dataJSON.id === "updateDownloadedBytesCount") {
                             const BtoMB = 1.0 / (1024 * 1024);
                             const sizeMb = size * BtoMB;
-                            const downloadProgress = (dataJSON.data * BtoMB).toFixed(2);
-                            document.getElementById("downloadProgress").innerHTML = downloadProgress + "MB" + " / " + sizeMb.toFixed(2) + "MB";
-                            const progress = (100.0 * dataJSON.data / size).toFixed(2);
+                            const downloadProgress = (
+                                dataJSON.data * BtoMB
+                            ).toFixed(2);
+                            document.getElementById(
+                                "downloadProgress",
+                            ).innerHTML =
+                                downloadProgress +
+                                "MB" +
+                                " / " +
+                                sizeMb.toFixed(2) +
+                                "MB";
+                            const progress = (
+                                (100.0 * dataJSON.data) /
+                                size
+                            ).toFixed(2);
                             elem.style.width = progress + "%";
                             elem.innerHTML = progress + "%";
                         }
@@ -224,21 +242,12 @@ define([
             // update the current language on startup
             const sessionLocale = session.locale;
 
-            language.addLanguageSelector(
-                "localeSelector",
-                sessionLocale,
-            );
+            language.addLanguageSelector("localeSelector", sessionLocale);
 
-            language.addLanguageSelector(
-                "localeSelectorV",
-                sessionLocale,
-            );
+            language.addLanguageSelector("localeSelectorV", sessionLocale);
 
             let storedLocale = localStorage.getItem("locale");
-            if (
-                sessionLocale !== storedLocale &&
-                sessionLocale !== "system"
-            ) {
+            if (sessionLocale !== storedLocale && sessionLocale !== "system") {
                 storedLocale = sessionLocale;
                 localStorage.setItem("locale", storedLocale);
                 window.location.reload();

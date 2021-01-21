@@ -659,10 +659,10 @@ define([
                     <li class="nav-item ${getAdvancedClass(advanced)}">
                         <a class="nav-link" data-toggle="tab" href="#${
                             path + "_" + name
-                        }" id="${path + "_" + name + "_tab"}">${
-                getI18n(path + "_" + name + "_tab").name
-            }</a>
-                    </li>                    
+                        }" id="${path + "_" + name + "_tab"}">
+                            ${getI18n(path + "_" + name + "_tab").name}
+                        </a>
+                    </li>
                     `);
             $("#configContent").append(`
                     <div class="tab-pane fade ${getAdvancedClass(
@@ -682,17 +682,17 @@ define([
 
         function addContainer(element, path, name, advanced) {
             var el = `<div class="parameter ${getAdvancedClass(advanced)}">
-                <div class="card-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_${index}" href="#collapse_${index}" aria-expanded="true">${
-                getI18n(path + "_" + name).name
-            }</a>
-                    ${self.getHelpReset(name, path, true)}
-                </div>   
-                <div id="collapse_${index}" class="collapse show">
-                    <div class="card-body">
+                    <div class="card-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_${index}" href="#collapse_${index}" aria-expanded="true">
+                            ${getI18n(path + "_" + name).name}
+                        </a>
+                        ${self.getHelpReset(name, path, true)}
                     </div>
-                </div> 
-            </div>`;
+                    <div id="collapse_${index}" class="collapse show">
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>`;
 
             element.append(el);
             element = element.find(".card-body").last();
@@ -708,25 +708,25 @@ define([
 
             var el = `<div class="parameter optional ${getAdvancedClass(
                 advanced,
-            )}" >   
+            )}" >
                 <div class="card-title">
                     <div class="btn-group btn-group-sm" data-toggle="buttons">
                         <label class="btn btn-primary optionalSet"><input class="skipInput" type="radio" name="${path}_${name}" id="${path}_${name}_setRadio" >Set</label>
-                        <label class="btn btn-primary optionalUnset"><input class="skipInput" type="radio" name="${path}_${name}" id="${path}_${name}_unsetRadio" >Unset</label>               
+                        <label class="btn btn-primary optionalUnset"><input class="skipInput" type="radio" name="${path}_${name}" id="${path}_${name}_unsetRadio" >Unset</label>
                     </div>
                     <input  id="${path}_${name}_set" type="checkbox" ${checked}  style="visibility:hidden" />
                     <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_${index}" href="#collapse_${index}" aria-expanded="true">
-                    ${getI18n(path + "_" + name).name}</a> 
+                    ${getI18n(path + "_" + name).name}</a>
                     ${self.getHelpReset(
                         name + "_set",
                         path,
                         node.content.defaultSet,
                     )}
-                </div>   
+                </div>
                 <div id="collapse_${index}" class="collapse show">
                     <div class="card-body">
-                    </div>      
-                </div> 
+                    </div>
+                </div>
             </div>`;
 
             element.append(el);
@@ -777,7 +777,7 @@ define([
                     path + "_" + name + "_" + node.content.default + "-choice-",
                 ).name,
             )}
-                </div>   
+                </div>
                 <div>
                 <form id="${path + "_" + name + "-choice-"}" class="card-body">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -786,7 +786,7 @@ define([
                         path + "_" + name + "-choice-" + "radioContent"
                     }"></div>
                 </form>
-                </div> 
+                </div>
             </div>`;
 
             element.append(el);
@@ -797,13 +797,11 @@ define([
         function addDropdown(element, path, name, advanced) {
             element.append(`<div class="parameter ${getAdvancedClass(
                 advanced,
-            )}" >     
+            )}" >
             <label for="${path}_${name}">${
                 getI18n(path + "_" + name).name
-            } </label> 
-           
+            } </label>
             <select id="${path}_${name}" >
-           
             </select>
         </div>`);
         }
@@ -819,12 +817,11 @@ define([
         function addHidden(element, path, name, advanced) {
             element.append(`<div class="parameter ${getAdvancedClass(
                 advanced,
-            )}" >     
+            )}" >
             <label for="${path}_${name}">${
                 getI18n(path + "_" + name).name
-            } </label> 
-           
-            <input type="hidden" id="${path}_${name}" >           
+            } </label>
+            <input type="hidden" id="${path}_${name}" >
             </input>
         </div>`);
         }
@@ -848,7 +845,7 @@ define([
             var el = `<div class="btn btn-primary" ${getAdvancedClass(
                 advanced,
             )}" >
-                <input type="radio" id="${path}_${name}-choice-" name="${radioName}"  value="${name}"> 
+                <input type="radio" id="${path}_${name}-choice-" name="${radioName}"  value="${name}">
                 <label for="${path}_${name}-choice-" style="margin-bottom:0">${
                 getI18n(path + "_" + name + "-choice-").name
             }</label>
@@ -872,21 +869,21 @@ define([
 
             var el = `<div class="parameter switch ${getAdvancedClass(
                 advanced,
-            )}" >   
+            )}" >
                 <div class="card-title">
                     <input id="${path}_${name}_enabled" type="checkbox" ${checked} " />
                     <a class="accordion-toggle" data-toggle="collapse" data-target="#collapse_${index}" href="#collapse_${index}" aria-expanded="true">
-                    ${getI18n(path + "_" + name).name}</a> 
+                    ${getI18n(path + "_" + name).name}</a>
                     ${self.getHelpReset(
                         name + "_enabled",
                         path,
                         node.content.defaultEnabled,
                     )}
-                </div>   
+                </div>
                 <div id="collapse_${index}" class="collapse show">
                     <div class="card-body">
-                    </div>      
-                </div> 
+                    </div>
+                </div>
             </div>`;
 
             element.append(el);
@@ -904,10 +901,10 @@ define([
         function addTextType(element, path, name, advanced, node) {
             element.append(`<div class="parameter ${getAdvancedClass(
                 advanced,
-            )}" >     
+            )}" >
                         <label for="${path}_${name}">${
                 getI18n(path + "_" + name).name
-            } </label> 
+            } </label>
                         ${self.getHelpReset(name, path, node.content.default)}
                         <input id="${path}_${name}" type="text" value="${
                 node.content.default
@@ -924,16 +921,13 @@ define([
 
             element.append(`<div class="parameter ${getAdvancedClass(
                 advanced,
-            )}" > 
+            )}" >
                         <input id="${path}_${name}" type="checkbox" ${checked} />
-                        <label for="${path}_${name}">${
-                getI18n(path + "_" + name).name
-            } ${getMinMaxLabel(node)} </label>
-                         ${self.getHelpReset(
-                             name,
-                             path,
-                             node.content.default,
-                         )}                         
+                        <label for="${path}_${name}">
+                            ${getI18n(path + "_" + name).name}
+                            ${getMinMaxLabel(node)}
+                        </label>
+                        ${self.getHelpReset(name, path, node.content.default)}
                     </div>`);
         }
 
@@ -943,7 +937,7 @@ define([
             let base = `<div class="parameter ${getAdvancedClass(advanced)}" >
                     <label for="${path}_${name}">${
                 getI18n(path + "_" + name).name
-            } ${getMinMaxLabel(node)}: 
+            } ${getMinMaxLabel(node)}:
                     </label>`;
 
             switch (type) {
@@ -959,7 +953,7 @@ define([
                         node.type
                     }" id="${path}_${name}" type="range" min="${
                         node.content.min
-                    }" 
+                    }"
                     max="${node.content.max}" value="${
                         node.content.default
                     }"  step="${node.content.step}"  >`;
@@ -967,7 +961,7 @@ define([
 
                 case "upDown":
                 case "updown":
-                    var el = `<input numericType="${node.type}" id="${path}_${name}" type="number" min="${node.content.min}" 
+                    var el = `<input numericType="${node.type}" id="${path}_${name}" type="number" min="${node.content.min}"
                     max="${node.content.max}" value="${node.content.default}"  step="${node.content.step}">`;
 
                     var grp = `<div class="upDownGrp" ><div class="input-group">
@@ -978,7 +972,6 @@ define([
                     <div class="input-group-append">
                         <button class="btn btn-primary btn-sm" id="plus-btn"><i class="fa fa-plus"></i></button>
                     </div>
-                    
                     </div></div>${self.getHelpReset(
                         name,
                         path,
@@ -993,7 +986,7 @@ define([
                         node.type
                     }" id="${path}_${name}"  type="text" min="${
                         node.content.min
-                    }" guiType="numeric" 
+                    }" guiType="numeric"
                     max="${node.content.max}" value="${
                         node.content.default
                     }"  step="${node.content.step}" > ${self.getHelpReset(

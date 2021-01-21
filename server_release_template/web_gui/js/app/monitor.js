@@ -7,7 +7,7 @@ define([
     "i18n!app/nls/monitor",
     "i18n!app/nls/notifications",
     "css!app/templates/monitor.css",
-    "js/lib/epoch.js",
+    "js/lib/epoch",
     "css!js/lib/epoch.css",
 ], function (
     addClientModalTemplate,
@@ -386,8 +386,7 @@ define([
             if (idObject === undefined) {
                 return { title: level, msg: line };
             } else {
-                //TODO: line could contain additional info for the msg
-
+                // TODO: line could contain additional info for the msg
                 if (i18nNotifications[idObject.id + ".title"] !== undefined) {
                     return {
                         title: i18nNotifications[idObject.id + ".title"],
